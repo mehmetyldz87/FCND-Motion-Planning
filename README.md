@@ -18,10 +18,10 @@ data = np.loadtxt('colliders.csv', delimiter=',', dtype='Float64', skiprows=2)
 grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DISTANCE)
 
 ```  
-  * a-Find North_min , North_max , East_min and East_max
-  * b-Find Nort and East Size 
-  * c-Creat a zero grid array by using Step 2 values 
-  * d-Find obstacles and insert into the grid array
+      * a-Find North_min , North_max , East_min and East_max
+      * b-Find Nort and East Size 
+      * c-Creat a zero grid array by using Step 2 values 
+      * d-Find obstacles and insert into the grid array
   
 * 4- Define Start and Goal Point
 ```    
