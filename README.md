@@ -20,7 +20,7 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 ```  
       * a-Find North_min , North_max , East_min and East_max
       * b-Find Nort and East Size 
-      * c-Creat a zero grid array by using Step 2 values 
+      * c-Creat a zero grid array by using Nort and East Size  
       * d-Find obstacles and insert into the grid array
   
 * 4- Define Start and Goal Point
