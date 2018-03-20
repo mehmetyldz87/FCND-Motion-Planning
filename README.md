@@ -2,7 +2,7 @@
 2nd Project - 3D Motion Planning 
 
 
-# Explaning the Starter Code
+## Explaning the Starter Code
 
 * 1- Read Global Home , Global Position and Local Position
 * 2- Read "Collider.csv" file and assign those values to a data array
@@ -12,9 +12,15 @@
   * c-Creat a zero grid array by using Step 2 values 
   * d-Find obstacles and insert into the grid array 
 * 4- Define Start and Goal Point
+     
+```
+ grid_start = (-north_offset, -east_offset)
+       
+ grid_goal = (-north_offset + 10, -east_offset + 10)
+```
 * 5- Run A* Search Algorithm to find parth via Planning_utils.py
 * 6- Create Waypoint List by using Path which is found by A* Search Algorithm ( Step 5 )
 * 7- Send Waypoint List to Simulator
 
-# Implementing Path Planning Algorithm
+## Implementing Path Planning Algorithm
 
