@@ -117,6 +117,29 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 
 #### 5. Modify A* to include diagonal motion (or replace A* altogether)
 
+### planing_utils_sol.py 
+
+Add Diagonal Motion Cost into Action class
+```  
+    NORTH_WEST = (-1, -1, np.sqrt(2))
+    NORTH_EAST = (-1, 1, np.sqrt(2))
+    SOUTH_WEST = (1, -1, np.sqrt(2))
+    SOUTH_EAST = (1, 1, np.sqrt(2))
+        
+```  
+
+Also Check Obstacle for Diagonal Motion
+```  
+    if (x - 1 < 0 or y - 1 < 0) or grid[x - 1, y - 1] == 1:
+        valid_actions.remove(Action.NORTH_WEST)
+    if (x - 1 < 0 or y + 1 > m) or grid[x - 1, y + 1] == 1:
+        valid_actions.remove(Action.NORTH_EAST)
+    if (x + 1 > n or y - 1 < 0) or grid[x + 1, y - 1] == 1:
+        valid_actions.remove(Action.SOUTH_WEST)
+    if (x + 1 > n or y + 1 > m) or grid[x + 1, y + 1] == 1:
+        valid_actions.remove(Action.SOUTH_EAST)
+        
+``` 
 
 #### 6. Cull waypoints 
 
