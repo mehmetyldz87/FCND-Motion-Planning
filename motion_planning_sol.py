@@ -115,8 +115,8 @@ class MotionPlanning(Drone):
     def plan_path(self):
         self.flight_state = States.PLANNING
         print("Searching for a path ...")
-        TARGET_ALTITUDE = 10
-        SAFETY_DISTANCE = 10
+        TARGET_ALTITUDE = 5
+        SAFETY_DISTANCE = 5
 
         self.target_position[2] = TARGET_ALTITUDE
 
@@ -152,14 +152,14 @@ class MotionPlanning(Drone):
         
         # Define a grid for a particular altitude and safety margin around obstacles
         grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DISTANCE)
-        #print("North offset = {0}, east offset = {1}".format(north_offset, east_offset))
+        print("North offset = {0}, east offset = {1}".format(north_offset, east_offset))
         # Define starting point on the grid (this is just grid center)
         #grid_start = (-north_offset, -east_offset)
         # TODO: convert start position to current position rather than map center [ Checked ]
         north_start = int(current_local_position[0])
         easth_start = int(current_local_position[1])
 
-        grid_start = (north_start + -north_offset, easth_start + -east_offset)
+        grid_start = ( (north_start + -north_offset) , (easth_start + -east_offset) )
 
         print("north_start:",north_start,"easth_start:",easth_start)
         print ("Grid_Start:",grid_start)
@@ -198,7 +198,7 @@ class MotionPlanning(Drone):
         north_goal = int(goal_pos_local[0])
         easth_goal = int(goal_pos_local[1])
         
-        grid_goal = ( north_goal + -north_offset  , easth_goal + -east_offset )
+        grid_goal = ( ( north_goal + -north_offset )  , (easth_goal + -east_offset) )
        
         print("north_stop:",north_goal,"easth_start:",easth_goal)
         print ("Grid_Goal:",grid_goal)
