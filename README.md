@@ -96,9 +96,9 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 
 #### 4. Set grid goal position from geodetic coords
 
-```     #Goal 
-        goal_lon = -122.397745
-        goal_lat =  37.793837
+```     #Goal One
+        goal_lon = -122.397745 # Desired Goal Position's Longtitude
+        goal_lat =  37.793837  # Desired Goal Position's Latitude
         
         goal_pos_global = []
         goal_pos_global = [ goal_lon , goal_lat , 0]
