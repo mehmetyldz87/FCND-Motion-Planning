@@ -6,7 +6,6 @@ from itertools import islice
 
 import numpy as np
 
-#from planning_utils import a_star, heuristic, create_grid , prune_path
 from planning_utils_sol import a_star, heuristic, create_grid , prune_path
 from udacidrone import Drone
 from udacidrone.connection import MavlinkConnection
