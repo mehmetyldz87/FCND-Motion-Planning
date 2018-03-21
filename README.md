@@ -180,6 +180,8 @@ planing_utils.py
     
 ```
 ### Execute the flight
+8QoKp-xedlo
+[![Video](https://img.youtube.com/vi/8QoKp-xedlo/0.jpg)](https://www.youtube.com/watch?v=8QoKp-xedlo&feature=youtu.be)
 
 ![Motion_Planning_1](./image/Motion_Planning_1.png)
 
