@@ -54,7 +54,7 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 
 #### 1. Set your global home position
 
- * a - Read "collider.csv" file and assign a 'read_pos' string array 
+ * a - Read "collider.csv" file and assign a 'read_pos' string array --> --> [ lat0 37.792480, lon0 -122.397450 ]
  * b - Remove ',' --> [ lat0 37.792480 lon0 -122.397450 ]
  * c - Split String --> [ [lat0], [37.792480], [lon0], [-122.397450] ]
  * d - Assign Lon & Lat Values to self.global_home[0] & self.global_home[1]
@@ -69,27 +69,89 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
         read_pos = read_pos.replace(",", "") # remove ','
         read_pos = read_pos.split() # split string
        
-        # TODO: set home position to (lat0, lon0, 0) [Checked]
         self.global_home[0] = float(read_pos[3]) # lon  
         self.global_home[1] = float(read_pos[1]) # lat
         self.global_home[2] = 0
 ```
 #### 2. Set your current local position
-Here as long as you successfully determine your local position relative to global home you'll be all set. Explain briefly how you accomplished this in your code.
 
 
-Meanwhile, here's a picture of me flying through the trees!
-![Forest Flying](./misc/in_the_trees.png)
+```    
+  current_local_position = []
+  current_local_position = global_to_local (self.global_position, self.global_home)
+```
+
 
 #### 3. Set grid start position from local position
-This is another step in adding flexibility to the start location. As long as it works you're good to go!
+
+```    
+        north_start = int(current_local_position[0])
+        easth_start = int(current_local_position[1])
+
+        grid_start = (north_start + -north_offset, easth_start + -east_offset)
+
+        print("north_start:",north_start,"easth_start:",easth_start)
+        print ("Grid_Start:",grid_start)
+```
 
 #### 4. Set grid goal position from geodetic coords
-This step is to add flexibility to the desired goal location. Should be able to choose any (lat, lon) within the map and have it rendered to a goal location on the grid.
+
+```     #Goal 
+        goal_lon = -122.397745
+        goal_lat =  37.793837
+        
+        goal_pos_global = []
+        goal_pos_global = [ goal_lon , goal_lat , 0]
+
+        goal_pos_local = []       
+        goal_pos_local = global_to_local (goal_pos_global,self.global_home)
+         
+        north_goal = int(goal_pos_local[0])
+        easth_goal = int(goal_pos_local[1])
+        
+        grid_goal = ( north_goal + -north_offset  , easth_goal + -east_offset )
+       
+        print("north_stop:",north_goal,"easth_start:",easth_goal)
+        print ("Grid_Goal:",grid_goal)
+```
 
 #### 5. Modify A* to include diagonal motion (or replace A* altogether)
-Minimal requirement here is to modify the code in planning_utils() to update the A* implementation to include diagonal motions on the grid that have a cost of sqrt(2), but more creative solutions are welcome. Explain the code you used to accomplish this step.
+
 
 #### 6. Cull waypoints 
-For this step you can use a collinearity test or ray tracing method like Bresenham. The idea is simply to prune your path of unnecessary waypoints. Explain the code you used to accomplish this step.
 
+
+```     from planning_utils import prune_path
+        pruned_path = prune_path(path) # path prune
+
+        # Convert path to waypoints
+        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in pruned_path]
+```
+------
+
+planing_utils.py
+``` 
+    def prune_path(path):
+      pruned_path = [p for p in path]
+    
+      i = 0
+      while i < len(pruned_path) - 2:
+        p1 = point(pruned_path[i])
+        p2 = point(pruned_path[i+1])
+        p3 = point(pruned_path[i+2])
+        
+      
+        if collinearity_check(p1, p2, p3):
+            pruned_path.remove(pruned_path[i+1])
+        else:
+            i += 1
+    return pruned_path
+
+  def point(p):
+    return np.array([p[0], p[1], 1.]).reshape(1, -1)
+
+  def collinearity_check(p1, p2, p3, epsilon=1e-4):   
+    m = np.concatenate((p1, p2, p3), 0)
+    det = np.linalg.det(m)
+    return abs(det) < epsilon
+```
