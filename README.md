@@ -156,3 +156,7 @@ planing_utils.py
     return abs(det) < epsilon
     
 ```
+### Execute the flight
+
+![Motion_Planning](./image/Motion_Planning.png)
+
