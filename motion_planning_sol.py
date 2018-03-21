@@ -168,9 +168,6 @@ class MotionPlanning(Drone):
         #grid_goal = (-north_offset + 10, -east_offset + 10)
         # TODO: adapt to set goal as latitude / longitude position and convert [ Checked ]
           
-        goal_pos_global = []
-        
-        
         #Goal One
         goal_lon = -122.397745
         goal_lat =  37.793837
@@ -189,8 +186,9 @@ class MotionPlanning(Drone):
 
         #Goal Four
         #goal_lon =  -122.401216
-        #goal_lat =  37.796713  
-
+        #goal_lat =  37.796713 
+        
+        goal_pos_global = []
         goal_pos_global = [ goal_lon , goal_lat , 0]
 
         goal_pos_local = []       
