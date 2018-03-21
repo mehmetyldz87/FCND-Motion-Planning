@@ -4,6 +4,8 @@
 
 ## Explaning the Starter Code
 
+![Stater_Code](./image/Starter_Code.png)
+
 * 1- Read Global Home , Global Position and Local Position
 ```
 print('global home {0}, position {1}, local position {2}'.format(self.global_home, self.global_position,
