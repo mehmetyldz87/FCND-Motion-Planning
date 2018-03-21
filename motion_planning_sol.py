@@ -121,16 +121,18 @@ class MotionPlanning(Drone):
         self.target_position[2] = TARGET_ALTITUDE
 
         # TODO: read lat0, lon0 from colliders into floating point values [Checked]
-        filename = 'colliders.csv'
+        
+        # read file
+        filename = 'colliders.csv'  
         with open(filename) as f:
             for line in islice(f, 1):
                 read_pos = line
 
-        read_pos = read_pos.replace(",", "")
-        read_pos = read_pos.split()
+        read_pos = read_pos.replace(",", "") # remove ','
+        read_pos = read_pos.split() # split string
        
         # TODO: set home position to (lat0, lon0, 0) [Checked]
-        self.global_home[0] = float(read_pos[3]) # lon
+        self.global_home[0] = float(read_pos[3]) # lon  
         self.global_home[1] = float(read_pos[1]) # lat
         self.global_home[2] = 0
 
@@ -210,6 +212,7 @@ class MotionPlanning(Drone):
         
         # TODO: prune path to minimize number of waypoints
         # TODO (if you're feeling ambitious): Try a different approach altogether!
+
 
         # Convert path to waypoints
         waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
