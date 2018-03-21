@@ -120,15 +120,13 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 
 #### 6. Cull waypoints 
 
-
+motion_planning_sol.py
 ```     from planning_utils import prune_path
         pruned_path = prune_path(path) # path prune
 
         # Convert path to waypoints
         waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in pruned_path]
 ```
-------
-
 planing_utils.py
 ``` 
     def prune_path(path):
