@@ -6,7 +6,7 @@ from itertools import islice
 
 import numpy as np
 
-from planning_utils import a_star, heuristic, create_grid
+from planning_utils import a_star, heuristic, create_grid , prune_path
 from udacidrone import Drone
 from udacidrone.connection import MavlinkConnection
 from udacidrone.messaging import MsgID
@@ -172,16 +172,16 @@ class MotionPlanning(Drone):
         
         
         #Goal One
-        #goal_lon = -122.397745
-        #goal_lat =  37.793837
+        goal_lon = -122.397745
+        goal_lat =  37.793837
         
         #Goal Two
         #goal_lon = -122.396640
         #goal_lat =  37.796232
 
         #Goal Three
-        goal_lon = -122.394324
-        goal_lat =  37.791684
+        #goal_lon = -122.394324
+        #goal_lat =  37.791684
 
         #Goal Three
         #goal_lon = -122.398938
@@ -210,12 +210,12 @@ class MotionPlanning(Drone):
         print('Local Start and Goal: ', grid_start, grid_goal)
         path, _ = a_star(grid, heuristic, grid_start, grid_goal)
         
-        # TODO: prune path to minimize number of waypoints
+        # TODO: prune path to minimize number of waypoints [Checked]
         # TODO (if you're feeling ambitious): Try a different approach altogether!
-
+        pruned_path = prune_path(path) 
 
         # Convert path to waypoints
-        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
+        waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in pruned_path]
         # Set self.waypoints
         self.waypoints = waypoints
         # TODO: send waypoints to sim [Checked]
