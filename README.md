@@ -88,7 +88,7 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
         north_start = int(current_local_position[0])
         easth_start = int(current_local_position[1])
 
-        grid_start = (north_start + -north_offset, easth_start + -east_offset)
+        grid_start = ( (north_start + -north_offset) , (easth_start + -east_offset) )
 
         print("north_start:",north_start,"easth_start:",easth_start)
         print ("Grid_Start:",grid_start)
@@ -109,7 +109,7 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
         north_goal = int(goal_pos_local[0])
         easth_goal = int(goal_pos_local[1])
         
-        grid_goal = ( north_goal + -north_offset  , easth_goal + -east_offset )
+        grid_goal = ( ( north_goal + -north_offset )  , (easth_goal + -east_offset) )
        
         print("north_stop:",north_goal,"easth_start:",easth_goal)
         print ("Grid_Goal:",grid_goal)
