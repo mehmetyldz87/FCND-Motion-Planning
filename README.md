@@ -158,5 +158,11 @@ planing_utils.py
 ```
 ### Execute the flight
 
-![Motion_Planning](./image/Motion_Planning.png)
+![Motion_Planning_1](./image/Motion_Planning_1.png)
+
+---
+
+![Motion_Planning_2](./image/Motion_Planning_2.png)
+
+
 
