@@ -5,6 +5,7 @@
 ## Explaning the Starter Code
 
 ![Stater_Code](./image/Starter_Code.png)
+---
 
 * 1- Read Global Home , Global Position and Local Position
 ```
@@ -47,6 +48,7 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 ```    
   self.send_waypoints()
 ```
+---
 
 ## Implementing Path Planning Algorithm
 
