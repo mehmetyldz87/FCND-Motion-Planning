@@ -80,7 +80,7 @@ Configuration Space
    * g - Return Path from start_node to goal_node
    * f - If a path not found . Print " Failed to find a path! " 
       
-* **6- Create Waypoint List by using Path which is found by A* Search Algorithm **
+* **6- Create Waypoint List by using Path **
 ```    
    waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
 ```
