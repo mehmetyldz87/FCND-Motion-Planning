@@ -6,9 +6,10 @@
 
 ![Stater_Code](./image/Starter_Code.png)
 ---
-[ plan_path() function ]
 
-Breafly, this function is used to create a configuration space (Picture_1) given a map of the world and setting a particular altitude and safety distance for your drone and by using A* algorithm , finding the lowest cost path from start to goal which is used to generates waypoints and send them to simulator.The steps are explained below   
+### plan_path() function
+
+Breafly, this function is used to create a configuration space given a map of the world and setting a particular altitude and safety distance for your drone and by using A* algorithm , finding the lowest cost path from start to goal which is used to generates waypoints and send them to simulator.The steps are explained below   
 
 * 1- Read Global Home , Global Position and Local Position
 ```
@@ -28,6 +29,9 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
       * b-Find Nort and East Size 
       * c-Creat a zero grid array by using Nort and East Size  
       * d-Find obstacles and insert into the grid array
+      * e-Return Grid , north_offset , east_offset
+
+Configuration Space 
 
 ![Config_Space](./image/Config_Space.png)
 
@@ -39,15 +43,42 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
 ```
 * 5- Run A* Search Algorithm to find path via Planning_utils.py  
   
-  
+  A* algoritm is used to search the free space for the lowest cost path between the start and the goal.   
+  Function inputs are given below.
+       
 ```    
-  path, _ = a_star(grid, heuristic, grid_start, grid_goal)
+  path, path_cost = a_star(grid, heuristic, grid_start, grid_goal)
+  
 ```
-      
-      * b-Find Nort and East Size 
-      * c-Creat a zero grid array by using Nort and East Size
-      * d-Find obstacles and insert into the grid array
-      
+  
+  * Grid ( Obtian from Step 3 )
+  * Heuristic ( heuristic function )
+  * Start ( grid_start )
+  * Goal  ( grid_goal )
+  
+  Steps
+  
+   *a - Define a path array , queue (set start point) , visited array ( set start point ) , branch , path cost   
+   *b - Check queue has cost and node values or empty . 
+   *c - Check current_node. 
+       -- If current_node is equel to goal_node , stop search and go **Step f** 
+       -- If current_node is not equel to goal_node , continue to search
+   *d - Find next_node and calculate new_cost 
+       
+     ```    
+     next_node = (current_node[0] + a.delta[0], current_node[1] + a.delta[1])
+     new_cost = current_cost + a.cost + heuristic_func(next_node, goal)
+  
+     ```
+     heuristic_func(next_node, goal_node)
+     Determines the value for each node based on the goal_node by using the Euclidean method.
+     np.linalg.norm(np.array(next_node) - np.array(goal_node)) 
+        
+   *e - Check next_node.
+       -- If next_node is not visited,add visisted list, put queue and add into brach
+       -- If next_node is visited , skip this node and go **Step b**
+    *f - If a path found . Retrace the path from goal_node to start_node  
+    *d - Return Path from start_node to goal_node
       
 * 6- Create Waypoint List by using Path which is found by A* Search Algorithm ( Step 5 )
 ```    
