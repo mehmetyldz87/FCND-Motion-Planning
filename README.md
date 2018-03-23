@@ -78,10 +78,10 @@ Configuration Space
        
    * e - If a path found . Retrace the path from goal_node to start_node 
    * g - Return Path from start_node to goal_node
-   * f - If a path not found . Print " Failed to find a path! " . 
+   * f - If a path not found . Print (Failed to find a path!) . 
       
       
-* **6- Create Waypoint List **
+* **6-Create Waypoint List**
 
 ```    
    waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
