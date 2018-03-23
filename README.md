@@ -191,7 +191,11 @@ Also Check Obstacle for Diagonal Motion
         
 ``` 
 
-#### 6. Cull waypoints 
+#### 6. Cull waypoints
+
+By the help of the Collinearty Check Method [Lecter_6], unnecessary waypoints in path is to eliminate. In two Breifly, three points p_1, p_2p,p_3 to be collinear, the determinant of the matrix that includes the coordinates of these three points as rows must be equal to zero in three dimension ( necessary but not sufficient)[Detail](http://mathworld.wolfram.com/Collinear.html). 
+However in two dimension,z coordinate simply set to 1 and the determinant being equal to zero indicates that the area of the triangle is zero. It is a sufficient condition for collinearity.
+
 
 motion_planning_sol.py
 ```     
@@ -202,7 +206,17 @@ motion_planning_sol.py
         waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in pruned_path]
         
 ```
+
 planing_utils.py
+
+**Details**
+   * a - Obtain points p1 , p2 , p3 
+   * b - Set z coordinate 1  by the help of the point(p) function
+   * c - Check collinearty of p1, p2, p3 by the help of the collinearity_check(p1, p2, p3) function
+        * If those points are collinear , remove from pruned_path
+        * If those point are not collinear , shift one point
+   * d - Return Pruned_Path
+   
 ``` 
     def prune_path(path):
       pruned_path = [p for p in path]
@@ -219,16 +233,37 @@ planing_utils.py
         else:
             i += 1
     return pruned_path
+```
 
+point(p) -> function is used to set z coordinate to 1
+``` 
   def point(p):
     return np.array([p[0], p[1], 1.]).reshape(1, -1)
+``` 
 
-  def collinearity_check(p1, p2, p3, epsilon=1e-4):   
+collinearty_check (p1,p2,p3,epislon = 1e-2) -> function is used to check collinearty of three points.
+
+ ``` 
+ def collinearity_check(p1, p2, p3, epsilon=1e-2): 
+ ```
+
+By using [numpy.concatenate](https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.concatenate.html) function which is used to join two or more arrays of the same shape along a specified axis and [numpy.linalg.det](https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.linalg.det.html), obtaioned determinant of three points.
+
+ ```
     m = np.concatenate((p1, p2, p3), 0)
     det = np.linalg.det(m)
     return abs(det) < epsilon
-    
-```
+ ```    
+
+Epsilon, which indicates how close to zero the determinant must be in order to consider the points to be collinear. This allows you to impose a criterion for accepting points that are almost collinear.
+
+Compare the absolute value of the determinant with epsilon. If determinant value smaller than epsilon , collinearty is true.
+ 
+  ```
+  return abs(det) < epsilon
+  ```    
+
+ 
 ### Execute the flight
 
 Video
