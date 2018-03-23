@@ -51,19 +51,15 @@ Configuration Space
   
 ```
   
-  * Grid ( Obtian from Step 3 )
-  * Heuristic ( heuristic function )
-  * Start ( grid_start )
-  * Goal  ( grid_goal )
+  Grid ( Obtian from Step 3 ) , Heuristic ( heuristic function ) , Start ( grid_start ) , Goal  ( grid_goal )
   
   Steps
   
-   * a - Define a path array , queue (set start point) , visited array ( set start point ) , branch , path cost   
-   * b - Check queue has cost and node values or empty . 
-   * c - Check current_node. 
-       -- If current_node is equel to goal_node , stop search and go **Step f** 
-       -- If current_node is not equel to goal_node , continue to search
-   * d - Find next_node and calculate new_cost 
+   * a - Define a path array , queue (set start point) , visited array ( set start point ) , branch , path cost    
+   * b - Check current_node. 
+        * If current_node is equel to goal_node , stop search and go **Step e** 
+        * If current_node is not equel to goal_node , continue to search
+   * c - Find next_node and calculate new_cost 
        
      ```    
      next_node = (current_node[0] + a.delta[0], current_node[1] + a.delta[1])
@@ -74,12 +70,13 @@ Configuration Space
      Determines the value for each node based on the goal_node by using the Euclidean method.
      np.linalg.norm(np.array(next_node) - np.array(goal_node)) 
         
-   * e - Check next_node.
-       * If next_node is not visited,add visisted list, put queue and add into brach
-       * If next_node is visited , skip this node and go **Step b**
+   * d - Check next_node.
+        * If next_node is not visited,add visisted list, put queue and add into brach
+        * If next_node is visited , skip this node and go **Step b**
        
-    * f - If a path found . Retrace the path from goal_node to start_node  
-    * d - Return Path from start_node to goal_node
+   * e - If a path found . Retrace the path from goal_node to start_node 
+   * g - Return Path from start_node to goal_node
+   * f - If a path not found . Print " Failed to find a path! " 
       
 * 6- Create Waypoint List by using Path which is found by A* Search Algorithm ( Step 5 )
 ```    
