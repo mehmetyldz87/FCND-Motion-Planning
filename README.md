@@ -193,7 +193,7 @@ Also Check Obstacle for Diagonal Motion
 
 #### 6. Cull waypoints
 
-By the help of the Collinearty Check Method [Lecter_6], unnecessary waypoints in path is to eliminate. In two Breifly, three points p_1, p_2p,p_3 to be collinear, the determinant of the matrix that includes the coordinates of these three points as rows must be equal to zero in three dimension ( necessary but not sufficient)[Detail](http://mathworld.wolfram.com/Collinear.html). 
+By the help of the Collinearty Check Method [Lecter_6], unnecessary waypoints in path is to eliminate. Breifly, three points p_1, p_2p,p_3 to be collinear, the determinant of the matrix that includes the coordinates of these three points as rows must be equal to zero in three dimension ( necessary but not sufficient) [Detail](http://mathworld.wolfram.com/Collinear.html). 
 However in two dimension,z coordinate simply set to 1 and the determinant being equal to zero indicates that the area of the triangle is zero. It is a sufficient condition for collinearity.
 
 In motion_planning_sol.py, prune_path() function is used to eliminate unnecessary waypoints
@@ -215,7 +215,7 @@ In planing_utils.py , the details of the prune_path() function is given below
    * c - Check collinearty of p1, p2, p3 by the help of the collinearity_check(p1, p2, p3) function
         * If those points are collinear , remove from pruned_path
         * If those point are not collinear , shift one point
-   * d - Return Pruned_Path
+   * d - Return pruned_path
    
 ``` 
     def prune_path(path):
@@ -257,7 +257,7 @@ By using [numpy.concatenate](https://docs.scipy.org/doc/numpy-1.14.0/reference/g
 
 Epsilon, which indicates how close to zero the determinant must be in order to consider the points to be collinear. This allows you to impose a criterion for accepting points that are almost collinear.
 
-Compare the absolute value of the determinant with epsilon. If determinant value smaller than epsilon , collinearty is true.
+Compare the absolute value of the determinant with epsilon. If the absolute value of determinant is smaller than epsilon , collinearty is true.
  
   ```
   return abs(det) < epsilon
