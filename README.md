@@ -196,8 +196,8 @@ Also Check Obstacle for Diagonal Motion
 By the help of the Collinearty Check Method [Lecter_6], unnecessary waypoints in path is to eliminate. In two Breifly, three points p_1, p_2p,p_3 to be collinear, the determinant of the matrix that includes the coordinates of these three points as rows must be equal to zero in three dimension ( necessary but not sufficient)[Detail](http://mathworld.wolfram.com/Collinear.html). 
 However in two dimension,z coordinate simply set to 1 and the determinant being equal to zero indicates that the area of the triangle is zero. It is a sufficient condition for collinearity.
 
+In motion_planning_sol.py, prune_path() function is used to eliminate unnecessary waypoints
 
-motion_planning_sol.py
 ```     
         from planning_utils import prune_path
         pruned_path = prune_path(path) # path prune
@@ -207,7 +207,7 @@ motion_planning_sol.py
         
 ```
 
-planing_utils.py
+In planing_utils.py , the details of the prune_path() function is given below
 
 **Details**
    * a - Obtain points p1 , p2 , p3 
