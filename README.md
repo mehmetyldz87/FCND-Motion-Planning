@@ -78,7 +78,7 @@ Configuration Space
        
    * e - If a path found . Retrace the path from goal_node to start_node 
    * g - Return Path from start_node to goal_node
-   * f - If a path not found . Print " Failed to find a path! " 
+   * f - If a path not found . Print " Failed to find a path! " . 
       
 * **6- Create Waypoint List by using Path **
 ```    
