@@ -43,7 +43,7 @@ Configuration Space
 ```
 * **5- Run A* Search Algorithm to find path via Planning_utils.py**  
   
-  A* algoritm is used to search the free space for the lowest cost path between the start and the goal.   
+  A algoritm is used to search the free space for the lowest cost path between the start and the goal.   
   Function inputs are given below.
        
 ```    
