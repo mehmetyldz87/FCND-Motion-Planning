@@ -80,15 +80,21 @@ Configuration Space
    * g - Return Path from start_node to goal_node
    * f - If a path not found . Print " Failed to find a path! " . 
       
-* **6- Create Waypoint List by using Path **
+      
+* **6- Create Waypoint List **
+
 ```    
    waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
 ```
+
 * **7- Send Waypoint List to Waypoint Array**
+
 ```    
   self.waypoints = waypoints
 ```
+
 * **8- Send Waypoint List to Simulator**
+
 ```    
   self.send_waypoints()
 ```
