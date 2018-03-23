@@ -6,6 +6,9 @@
 
 ![Stater_Code](./image/Starter_Code.png)
 ---
+[ plan_path() function ]
+
+Breafly, this function is used to create a configuration space (Picture_1) given a map of the world and setting a particular altitude and safety distance for your drone and by using A* algorithm , finding the lowest cost path from start to goal which is used to generates waypoints and send them to simulator.The steps are explained below   
 
 * 1- Read Global Home , Global Position and Local Position
 ```
@@ -25,17 +28,27 @@ grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DIST
       * b-Find Nort and East Size 
       * c-Creat a zero grid array by using Nort and East Size  
       * d-Find obstacles and insert into the grid array
-  
+
+![Config_Space](./image/Config_Space.png)
+
 * 4- Define Start and Goal Point
 ```    
  grid_start = (-north_offset, -east_offset)
        
  grid_goal = (-north_offset + 10, -east_offset + 10)
 ```
-* 5- Run A* Search Algorithm to find parth via Planning_utils.py
+* 5- Run A* Search Algorithm to find path via Planning_utils.py  
+  
+  
 ```    
   path, _ = a_star(grid, heuristic, grid_start, grid_goal)
 ```
+      
+      * b-Find Nort and East Size 
+      * c-Creat a zero grid array by using Nort and East Size
+      * d-Find obstacles and insert into the grid array
+      
+      
 * 6- Create Waypoint List by using Path which is found by A* Search Algorithm ( Step 5 )
 ```    
    waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
