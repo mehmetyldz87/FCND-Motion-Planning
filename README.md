@@ -46,14 +46,16 @@ Configuration Space
   A* algoritm is used to search the free space for the lowest cost path between the start and the goal.   
   Function inputs are given below.
        
-```    
+  ```    
   path, path_cost = a_star(grid, heuristic, grid_start, grid_goal)
+    
+   where
+   
+   Grid ( Obtian from Step 3 ) , Heuristic ( heuristic function ) , Start ( grid_start ) , Goal  ( grid_goal )
+    
+  ```
   
-```
-  
-  Grid ( Obtian from Step 3 ) , Heuristic ( heuristic function ) , Start ( grid_start ) , Goal  ( grid_goal )
-  
-  Steps
+  **Steps**
   
    * a - Define a path array , queue (set start point) , visited array ( set start point ) , branch , path cost    
    * b - Check current_node. 
