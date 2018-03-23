@@ -11,16 +11,16 @@
 
 Breafly, this function is used to create a configuration space given a map of the world and setting a particular altitude and safety distance for your drone and by using A* algorithm , finding the lowest cost path from start to goal which is used to generates waypoints and send them to simulator.The steps are explained below   
 
-* 1- Read Global Home , Global Position and Local Position
+* **1- Read Global Home , Global Position and Local Position**
 ```
 print('global home {0}, position {1}, local position {2}'.format(self.global_home, self.global_position,
                                                                          self.local_position))
 ```
-* 2- Read "Collider.csv" file and obtaining obstacle in the map
+* **2- Read "Collider.csv" file and obtaining obstacle in the map**
 ```
 data = np.loadtxt('colliders.csv', delimiter=',', dtype='Float64', skiprows=2)
 ```    
-* 3- Creat Grid with a particular altitude and safety margin around obstacles via Planning_utils.py 
+* **3- Creat Grid with a particular altitude and safety margin around obstacles via Planning_utils.py** 
 ```
 grid, north_offset, east_offset = create_grid(data, TARGET_ALTITUDE, SAFETY_DISTANCE)
 
@@ -35,13 +35,13 @@ Configuration Space
 
 ![Config_Space](./image/Config_Space.png)
 
-* 4- Define Start and Goal Point
+* **4- Define Start and Goal Point**
 ```    
  grid_start = (-north_offset, -east_offset)
        
  grid_goal = (-north_offset + 10, -east_offset + 10)
 ```
-* 5- Run A* Search Algorithm to find path via Planning_utils.py  
+* **5- Run A* Search Algorithm to find path via Planning_utils.py**  
   
   A* algoritm is used to search the free space for the lowest cost path between the start and the goal.   
   Function inputs are given below.
@@ -78,15 +78,15 @@ Configuration Space
    * g - Return Path from start_node to goal_node
    * f - If a path not found . Print " Failed to find a path! " 
       
-* 6- Create Waypoint List by using Path which is found by A* Search Algorithm ( Step 5 )
+* **6- Create Waypoint List by using Path which is found by A* Search Algorithm **
 ```    
    waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
 ```
-* 7- Send Waypoint List to Waypoint Array
+* **7- Send Waypoint List to Waypoint Array**
 ```    
   self.waypoints = waypoints
 ```
-* 8- Send Waypoint List to Simulator
+* **8- Send Waypoint List to Simulator**
 ```    
   self.send_waypoints()
 ```
