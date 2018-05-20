@@ -1,6 +1,7 @@
 # FCND-Motion-Planning
-2nd Project - 3D Motion Planning 
+2nd Project - 3D Motion Planning  
 
+[Detailed Project Explantion Page](https://github.com/udacity/FCND-Motion-Planning)
 
 ## Explaning the Starter Code
 
